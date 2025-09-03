@@ -1,5 +1,3 @@
-
-import "./globals.css";
 import Users from "./users/page";
 
 function Home() {

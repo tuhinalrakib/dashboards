@@ -1,5 +1,4 @@
 "use client";
-
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { useRef } from "react";
@@ -24,7 +23,7 @@ function AnimatedBox() {
 
 export default function ThreeScene() {
   return (
-    <div className="w-full h-48 sm:h-64 pointer-events-none">
+    <div className="w-[30%] h-48 sm:h-64 pointer-events-none">
       <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
         {/* Light */}
         <ambientLight intensity={0.8} />
