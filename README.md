@@ -33,8 +33,8 @@ It fetches user data from [JSONPlaceholder](https://jsonplaceholder.typicode.com
 
 src/
 ├── app/
-│ ├── users/ # User list & search page
-│ ├── users/[id]/ # User details dynamic route
+- │ ├── users/ # User list & search page
+- │ ├── users/[id]/ # User details dynamic route
 │ └── layout.js # Root layout
 ├── components/
 │ ├── ThreeScene.jsx # 3D animated box (Three.js)
