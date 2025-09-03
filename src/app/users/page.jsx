@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
-import ThreeScene from '@/components/ThreeScene'
+import ThreeScene from '../../components/ThreeScene'
 import UserRow from '@/components/UserRow'
 import SearchBar from '@/components/SearchBar'
 import Pagination from '@/components/Pagination'
@@ -10,6 +10,7 @@ import axios from 'axios'
 export default function Users() {
   const [users, setUsers] = useState([])
   const [query, setQuery] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
   const [page, setPage] = useState(1)
   const perPage = 4
 
@@ -18,23 +19,24 @@ export default function Users() {
       try {
         const res = await axios.get('https://jsonplaceholder.typicode.com/users')
         setUsers(res.data)
-      }catch(e){
+      } catch (e) {
         console.log(e.message)
       }
     }
     fetchUsers()
-  }, [])
+  }, [users])
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase()
+    const q = searchTerm.toLowerCase()
     return users.filter(u =>
       u.name.toLowerCase().includes(q) ||
       u.email.toLowerCase().includes(q)
     )
-  }, [users, query])
+  }, [users, searchTerm])
 
   const handleSearch = () => {
-
+    setSearchTerm(query.trim())
+    setPage(1)
   }
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / perPage))
@@ -50,7 +52,7 @@ export default function Users() {
   return (
     <motion.div
       animate={{
-        color: ["#3aa110", "#a05619", "#f9f871", "#4d7ada", "#6FB3B0", "123EB8"],
+        color: ["#3aa110", "#a05619", "#f9f871", "#4d7ada", "#6FB3B0",],
         transition: { duration: 5, repeat: Infinity }
       }}
       className="min-h-screen mt-5 bg-gradient-to-br from-[#7299A6] to-white">
@@ -67,7 +69,9 @@ export default function Users() {
             <SearchBar value={query} onChange={setQuery} />
             <button
               onClick={handleSearch}
-              className='py-2 px-5 font-semibold text-white rounded-xl bg-[#145efc]'>Search</button>
+              className='py-2 px-5 cursor-pointer font-semibold text-white rounded-xl bg-[#145efc]'>
+              Search
+            </button>
           </div>
 
           <div className="mt-4 overflow-x-auto">

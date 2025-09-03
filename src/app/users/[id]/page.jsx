@@ -37,9 +37,8 @@ export default function UserDetails() {
   return (
     <div className="min-h-screen mt-5 bg-gradient-to-br from-[#7299A6] to-white">
       <div className="max-w-4xl mx-auto p-6">
-        {/* ✅ Back Button */}
         <Link
-          href="/users"
+          href="/"
           className="inline-block text-sm font-semibold py-2 px-3 bg-blue-800 rounded-2xl text-white hover:underline"
         >
           &larr; Back to Users
